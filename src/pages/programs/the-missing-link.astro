@@ -1,0 +1,93 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+---
+
+<PageLayout
+  title="The Missing Link — Indiana Missing Persons Directory | Silver Lining of Hope"
+  description="The Missing Link is building a searchable directory of Indiana's 1,000+ missing persons — compiled from NamUs, Doe Network, Charley Project, and public records."
+  heading="The Missing Link"
+  intro="One clean, complete, public record of Indiana's missing — because you can't find people who fell through the cracks in the data."
+  crumbs={[
+    { label: 'Programs', href: '/programs' },
+    { label: 'The Missing Link', href: '/programs/the-missing-link' },
+  ]}
+>
+  <div class="container section--dark tml-band">
+    <div class="grid-3">
+      <div class="stat">
+        <strong>1,000+</strong>
+        <span>Indiana missing person cases being compiled and verified</span>
+      </div>
+      <div class="stat">
+        <strong>4 sources+</strong>
+        <span>NamUs, Doe Network, Charley Project, and FOIA/APRA records</span>
+      </div>
+      <div class="stat">
+        <strong>5 states</strong>
+        <span>Indiana first, then Ohio, Illinois, Michigan &amp; Kentucky</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container--narrow section prose">
+    <h2>The problem: the data itself is missing</h2>
+    <p>
+      There is no single, complete list of Indiana's missing. NamUs holds
+      some cases. The Doe Network and the Charley Project hold others. Local
+      agencies hold records that never reach any national database. Names are
+      spelled differently across systems, dates conflict, and some people
+      appear nowhere at all. A missing person who isn't in the data is a
+      missing person no one is looking for — and an unidentified person who
+      can't be matched is a family that never gets an answer.
+    </p>
+
+    <h2>What we're building</h2>
+    <p>
+      The Missing Link is a long-term data project to compile, clean, and
+      cross-reference every available record on missing persons in Indiana:
+    </p>
+    <ul>
+      <li><strong>Compile</strong> — pulling every Indiana case from NamUs, the Doe Network, the Charley Project, and agency records obtained through Indiana's Access to Public Records Act.</li>
+      <li><strong>Clean</strong> — reconciling names, dates, locations, and case numbers so each person has one accurate, verified entry.</li>
+      <li><strong>Cross-reference</strong> — connecting missing person records with unidentified persons listings to surface potential matches for investigators.</li>
+      <li><strong>Map</strong> — organizing every case by Indiana State Police district, so patterns and coverage gaps become visible.</li>
+      <li><strong>Publish</strong> — a free, public, searchable directory of Indiana's missing, built to help families, researchers, and law enforcement alike.</li>
+    </ul>
+
+    <h2>Built with respect</h2>
+    <p>
+      Every entry in this directory is a person, and every record we touch
+      belongs to a family's worst chapter. We publish only information that
+      is already public, we honor family requests about how their loved one
+      appears, and we correct errors fast. The directory is a tool for
+      finding people — never content for consuming them.
+    </p>
+
+    <h2>What's next</h2>
+    <p>
+      Indiana is phase one. As the methodology proves out, we'll extend the
+      project to Ohio, Illinois, Michigan, and Kentucky — because missing
+      people cross state lines, and the data should too. Progress updates are
+      posted on <a href="/blog">the blog</a>.
+    </p>
+
+    <h2>Help us build it</h2>
+    <p>
+      The Missing Link runs on volunteer researchers and donor support for
+      records fees and hosting.
+      <a href="/get-involved/volunteer">Volunteer your research hours</a>,
+      <a href="/donate">fund a records request</a>, or — if you're with a law
+      enforcement agency — <a href="/get-help/law-enforcement">partner with
+      us</a> on district-level data.
+    </p>
+  </div>
+
+  <style>
+    .tml-band {
+      width: 100%;
+      max-width: none;
+      padding-block: var(--space-6);
+      margin-top: var(--space-5);
+    }
+  </style>
+</PageLayout>

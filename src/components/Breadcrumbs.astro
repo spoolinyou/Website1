@@ -1,0 +1,84 @@
+---
+/*
+ * Breadcrumb trail + BreadcrumbList JSON-LD for inner pages.
+ * Pass items as [{ label, href }] — the last item is the current page.
+ */
+interface Crumb {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  items: Crumb[];
+}
+
+const { items } = Astro.props;
+const site = 'https://www.silverliningofhope.com';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: site },
+    ...items.map((c, i) => ({
+      '@type': 'ListItem',
+      position: i + 2,
+      name: c.label,
+      item: `${site}${c.href}`,
+    })),
+  ],
+};
+---
+
+<nav aria-label="Breadcrumb" class="breadcrumbs">
+  <ol>
+    <li><a href="/">Home</a></li>
+    {
+      items.map((c, i) => (
+        <li>
+          {i === items.length - 1 ? (
+            <span aria-current="page">{c.label}</span>
+          ) : (
+            <a href={c.href}>{c.label}</a>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+<style>
+  .breadcrumbs {
+    font-size: var(--text-sm);
+    padding-top: var(--space-5);
+  }
+
+  .breadcrumbs ol {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+  }
+
+  .breadcrumbs li {
+    margin: 0;
+  }
+
+  .breadcrumbs li + li::before {
+    content: '/';
+    margin-right: var(--space-2);
+    color: var(--color-text-soft);
+  }
+
+  .breadcrumbs a {
+    color: var(--color-teal);
+  }
+
+  .breadcrumbs [aria-current] {
+    color: var(--color-text-soft);
+  }
+</style>

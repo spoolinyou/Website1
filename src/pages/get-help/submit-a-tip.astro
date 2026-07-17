@@ -1,0 +1,73 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+---
+
+<PageLayout
+  title="Submit an Anonymous Tip | Silver Lining of Hope"
+  description="Share information about a missing person or unsolved homicide case safely and anonymously. No name, email, or account required."
+  heading="Submit an anonymous tip"
+  intro="What you know might be the piece a family has waited years for. You can share it without telling us who you are."
+  crumbs={[
+    { label: 'Get help', href: '/get-help' },
+    { label: 'Submit an anonymous tip', href: '/get-help/submit-a-tip' },
+  ]}
+>
+  <div class="container--narrow section">
+    <p>
+      <strong>This form is anonymous.</strong> It has no required identity
+      fields, and we do not log IP addresses from tip submissions. If a case
+      is urgent or someone is in danger, call 911 — this form is not
+      monitored around the clock.
+    </p>
+    <p>
+      Tips about active investigations are passed to the appropriate agency.
+      You can also tip law enforcement directly through
+      <a href="https://www.p3tips.com/" rel="noopener">Crime Stoppers</a> if
+      you prefer.
+    </p>
+
+    <form method="post" action="/api/tip" class="tip-form">
+      <label for="case">
+        Which case is this about?
+        <span class="field-hint">A name, a location, or however you know it.</span>
+      </label>
+      <input type="text" id="case" name="case" required />
+
+      <label for="tip">
+        What do you know?
+        <span class="field-hint">
+          Anything helps: what you saw or heard, when, where, and who else
+          might know. Don't worry about writing it perfectly.
+        </span>
+      </label>
+      <textarea id="tip" name="tip" required></textarea>
+
+      <label for="contact-optional">
+        A way to reach you <em>(optional — leave blank to stay anonymous)</em>
+        <span class="field-hint">
+          Only if you're open to follow-up questions. Email or phone.
+        </span>
+      </label>
+      <input type="text" id="contact-optional" name="contact" autocomplete="off" />
+
+      <p class="privacy-note">
+        Only the two case fields are required. We never publish tips, and we
+        share them only with the investigators working the case.
+      </p>
+
+      <button type="submit" class="btn btn--primary">Send tip</button>
+    </form>
+  </div>
+
+  <style>
+    .tip-form {
+      max-width: 34rem;
+      margin-top: var(--space-5);
+    }
+
+    .privacy-note {
+      font-size: var(--text-sm);
+      color: var(--color-text-soft);
+    }
+  </style>
+</PageLayout>

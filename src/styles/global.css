@@ -1,0 +1,490 @@
+@import './tokens.css';
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  line-height: var(--leading-body);
+  color: var(--color-text);
+  background: var(--color-paper);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 560;
+  line-height: var(--leading-tight);
+  color: var(--color-ink);
+  margin: 0 0 var(--space-4);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(var(--text-xl), 5vw, var(--text-2xl));
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: clamp(var(--text-lg), 3.5vw, var(--text-xl));
+}
+
+h3 {
+  font-size: var(--text-lg);
+  line-height: var(--leading-snug);
+}
+
+h4 {
+  font-size: var(--text-md);
+  font-family: var(--font-body);
+  font-weight: 650;
+}
+
+p {
+  margin: 0 0 var(--space-4);
+  max-width: 68ch;
+}
+
+a {
+  color: var(--color-teal);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  color: var(--color-ink);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul,
+ol {
+  padding-left: 1.25rem;
+  margin: 0 0 var(--space-4);
+}
+
+li {
+  margin-bottom: var(--space-2);
+}
+
+/* Visible keyboard focus — WCAG 2.4.7 */
+:focus-visible {
+  outline: 3px solid var(--color-gold-deep);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--color-gold-soft);
+  color: var(--color-ink);
+}
+
+/* ==========================================================================
+   Utilities & landmarks
+   ========================================================================== */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-4);
+  z-index: 200;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 0;
+  color: var(--color-paper);
+}
+
+.container {
+  width: min(var(--container), 100% - 2.5rem);
+  margin-inline: auto;
+}
+
+.container--narrow {
+  width: min(var(--container-narrow), 100% - 2.5rem);
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: var(--space-8);
+}
+
+@media (min-width: 48em) {
+  .section {
+    padding-block: var(--space-9);
+  }
+}
+
+.section--dark {
+  background: var(--color-ink);
+  color: var(--color-silver);
+}
+
+.section--dark h2,
+.section--dark h3 {
+  color: var(--color-paper);
+}
+
+.section--dark a {
+  color: var(--color-silver);
+}
+
+.section--dark a:hover {
+  color: var(--color-paper);
+}
+
+.eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 650;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-gold-deep);
+  margin-bottom: var(--space-3);
+}
+
+.section--dark .eyebrow {
+  color: var(--color-gold);
+}
+
+.lead {
+  font-size: var(--text-lg);
+  line-height: var(--leading-snug);
+  color: var(--color-text-soft);
+  max-width: 46ch;
+}
+
+/* ==========================================================================
+   Signature element: the silver lining
+   A hairline of silver-to-gold light — a horizon at dawn. Used as the
+   section divider and beneath the page H1. Keep everything else quiet.
+   ========================================================================== */
+
+.lining {
+  border: 0;
+  height: 2px;
+  width: 100%;
+  margin: var(--space-5) 0;
+  background: var(--gradient-lining);
+}
+
+.lining--left {
+  background: linear-gradient(
+    90deg,
+    var(--color-silver) 0%,
+    #e8e4da 30%,
+    var(--color-gold) 55%,
+    transparent 100%
+  );
+  max-width: 16rem;
+  margin-inline: 0;
+}
+
+/* ==========================================================================
+   Buttons — 44px minimum touch target
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--tap);
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-sm);
+  border: 1.5px solid transparent;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 650;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.btn--primary {
+  background: var(--color-gold);
+  color: var(--color-ink-deep);
+}
+
+.btn--primary:hover {
+  background: #d5b172;
+  color: var(--color-ink-deep);
+}
+
+.btn--secondary {
+  background: transparent;
+  color: var(--color-ink);
+  border-color: var(--color-ink);
+}
+
+.btn--secondary:hover {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.section--dark .btn--secondary,
+.btn--secondary-light {
+  background: transparent;
+  color: var(--color-paper);
+  border-color: var(--color-silver);
+}
+
+.section--dark .btn--secondary:hover,
+.btn--secondary-light:hover {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+.btn--quiet {
+  background: transparent;
+  color: var(--color-teal);
+  padding-inline: var(--space-2);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+/* ==========================================================================
+   Cards
+   ========================================================================== */
+
+.card {
+  background: var(--color-paper-raised);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:has(a:hover) {
+  box-shadow: var(--shadow-card-hover);
+}
+
+.card h3 {
+  margin-bottom: var(--space-2);
+}
+
+.card p {
+  color: var(--color-text-soft);
+  font-size: var(--text-base);
+  margin-bottom: var(--space-3);
+}
+
+.card-link {
+  font-weight: 650;
+  color: var(--color-teal);
+}
+
+/* Card grids */
+.grid-2,
+.grid-3,
+.grid-4 {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 40em) {
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 64em) {
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Pillar cards: the H-O-P-E acronym made visually evident */
+.pillar-letter {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 560;
+  line-height: 1;
+  color: var(--color-gold-deep);
+  display: block;
+  margin-bottom: var(--space-3);
+}
+
+/* Stat callouts */
+.stat {
+  text-align: left;
+}
+
+.stat strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-xl), 4vw, var(--text-2xl));
+  font-weight: 560;
+  color: var(--color-gold);
+  line-height: var(--leading-tight);
+}
+
+.stat span {
+  font-size: var(--text-base);
+  color: var(--color-silver);
+}
+
+/* ==========================================================================
+   Forms — minimal, calm, accessible
+   ========================================================================== */
+
+label {
+  display: block;
+  font-weight: 650;
+  font-size: var(--text-base);
+  margin-bottom: var(--space-2);
+}
+
+.field-hint {
+  display: block;
+  font-weight: 400;
+  font-size: var(--text-sm);
+  color: var(--color-text-soft);
+  margin-top: var(--space-1);
+}
+
+input[type='text'],
+input[type='email'],
+input[type='tel'],
+select,
+textarea {
+  width: 100%;
+  min-height: var(--tap);
+  padding: var(--space-3);
+  font: inherit;
+  font-size: var(--text-base);
+  color: var(--color-text);
+  background: var(--color-paper-raised);
+  border: 1.5px solid #a9a396;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-4);
+}
+
+textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 3px solid var(--color-gold-deep);
+  outline-offset: 1px;
+  border-color: var(--color-ink);
+}
+
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0 0 var(--space-4);
+}
+
+/* ==========================================================================
+   Prose pages (long-form content)
+   ========================================================================== */
+
+.prose h2 {
+  margin-top: var(--space-7);
+}
+
+.prose h3 {
+  margin-top: var(--space-6);
+}
+
+.prose ul,
+.prose ol {
+  max-width: 64ch;
+}
+
+/* Respectful frame for victims' and memorial photos */
+.memorial-frame {
+  border: 1px solid var(--color-line);
+  border-bottom: 3px solid var(--color-gold);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2);
+  background: var(--color-paper-raised);
+  box-shadow: var(--shadow-card);
+}
+
+.memorial-frame img {
+  border-radius: 4px;
+}
+
+.memorial-frame figcaption {
+  font-size: var(--text-sm);
+  color: var(--color-text-soft);
+  padding: var(--space-2) var(--space-1) var(--space-1);
+  text-align: center;
+}
+
+/* ==========================================================================
+   Subtle fade-on-scroll (disabled for reduced motion)
+   ========================================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+  .fade-in {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .fade-in.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}

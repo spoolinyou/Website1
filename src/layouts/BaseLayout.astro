@@ -1,0 +1,101 @@
+---
+import '@fontsource-variable/fraunces';
+import '@fontsource-variable/public-sans';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import QuickExit from '../components/QuickExit.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Extra page-specific JSON-LD objects (Article, FAQPage, Event, …) */
+  jsonLd?: object[];
+}
+
+const { title, description, jsonLd = [] } = Astro.props;
+const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro.site);
+
+/* Sitewide organization schema — NonprofitOrganization with EIN as taxID */
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'NonprofitOrganization',
+  '@id': 'https://www.silverliningofhope.com/#org',
+  name: 'Silver Lining of Hope, Inc',
+  alternateName: 'Silver Lining of Hope',
+  url: 'https://www.silverliningofhope.com',
+  logo: 'https://www.silverliningofhope.com/images/silver-lining-of-hope-logo.png',
+  taxID: '39-2169099',
+  nonprofitStatus: 'Nonprofit501c3',
+  description:
+    'Free investigative research and advocacy for families of missing persons, unsolved homicides, unidentified persons, and domestic violence survivors, and a partner resource for law enforcement.',
+  foundingDate: '2025',
+  founder: { '@type': 'Person', name: 'Megan Tomlinson' },
+  address: {
+    '@type': 'PostalAddress',
+    addressRegion: 'IN',
+    addressCountry: 'US',
+  },
+  areaServed: ['Indiana', 'Ohio', 'Illinois', 'Michigan', 'Kentucky'],
+  sameAs: [
+    'https://www.facebook.com/silverliningofhope',
+    'https://www.instagram.com/silverliningofhope',
+  ],
+};
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="theme-color" content="#141a24" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Silver Lining of Hope, Inc" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+    {jsonLd.map((obj) => (
+      <script type="application/ld+json" set:html={JSON.stringify(obj)} />
+    ))}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <QuickExit />
+
+    <script>
+      // Subtle fade-on-scroll. The CSS only applies the effect when
+      // prefers-reduced-motion allows it; without JS everything stays visible.
+      const faders = document.querySelectorAll('.fade-in');
+      if ('IntersectionObserver' in window && faders.length) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin: '0px 0px -10% 0px' }
+        );
+        faders.forEach((el) => io.observe(el));
+      } else {
+        faders.forEach((el) => el.classList.add('is-visible'));
+      }
+    </script>
+  </body>
+</html>

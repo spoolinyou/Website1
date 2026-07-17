@@ -1,0 +1,26 @@
+# 301 redirects from old Wix URLs to the new clean structure.
+# Cloudflare Pages format: <old-path> <new-path> <status>
+# Verify each old slug against the live Wix site before launch and add any
+# that are missing — every indexed Wix URL should land somewhere real.
+
+/copy-of-families            /get-help/families        301
+/families                    /get-help/families        301
+/law-enforcement             /get-help/law-enforcement 301
+/h-homicides                 /programs/homicides       301
+/o-outreach-advocacy         /programs/outreach-advocacy 301
+/p-persons-missing           /programs/missing-persons 301
+/e-education-reform          /programs/education-reform 301
+/the-missing-link            /programs/the-missing-link 301
+/missing-link                /programs/the-missing-link 301
+/our-story                   /about/our-story          301
+/board-of-directors          /about/board              301
+/in-the-news                 /about/news               301
+/contact                     /about/contact            301
+/volunteer                   /get-involved/volunteer   301
+/events                      /get-involved/events      301
+/petitions                   /get-involved/legislative-advocacy 301
+/resources                   /get-help/resources       301
+/tip                         /get-help/submit-a-tip    301
+/tips                        /get-help/submit-a-tip    301
+/donations                   /donate                   301
+/post/*                      /blog/:splat              301

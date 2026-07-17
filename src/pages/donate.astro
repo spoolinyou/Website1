@@ -1,0 +1,71 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const donateSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DonateAction',
+  name: 'Donate to Silver Lining of Hope',
+  recipient: { '@id': 'https://www.silverliningofhope.com/#org' },
+  target: 'https://www.silverliningofhope.com/donate',
+  description:
+    'Tax-deductible donations fund free investigative research and advocacy for families of missing persons and homicide victims.',
+};
+---
+
+<PageLayout
+  title="Donate — Fund Free Case Research | Silver Lining of Hope"
+  description="Your tax-deductible gift funds free investigative research and advocacy for families of the missing and murdered. 501(c)(3), EIN 39-2169099."
+  heading="Donate"
+  intro="Families never pay us. That's only possible because people like you do."
+  crumbs={[{ label: 'Donate', href: '/donate' }]}
+  jsonLd={[donateSchema]}
+>
+  <div class="container--narrow section prose">
+    <h2>What your gift funds</h2>
+    <ul>
+      <li><strong>$25</strong> covers copying and certification fees for a records request.</li>
+      <li><strong>$50</strong> funds a month of database access for active case research.</li>
+      <li><strong>$100</strong> sends an advocate to a hearing alongside a family.</li>
+      <li><strong>$250</strong> underwrites a district's worth of data verification for <a href="/programs/the-missing-link">The Missing Link</a>.</li>
+    </ul>
+    <p>
+      Silver Lining of Hope, Inc is a 501(c)(3) public charity (EIN
+      39-2169099). Donations are tax-deductible to the extent allowed by law,
+      and you will receive a receipt for your records.
+    </p>
+
+    <div class="donate-embed">
+      <!--
+        Embed the donation processor here (Zeffy, Givebutter, or Donorbox —
+        all nonprofit-friendly with low/no platform fees). Example:
+        <iframe title="Donate to Silver Lining of Hope" src="https://www.zeffy.com/embed/donation-form/YOUR-FORM-ID" ...></iframe>
+      -->
+      <p class="donate-placeholder">
+        <strong>Donation form goes here.</strong> Connect a Zeffy, Givebutter,
+        or Donorbox embed — see the comment in this file.
+      </p>
+    </div>
+
+    <h2>Other ways to give</h2>
+    <ul>
+      <li><strong>By mail:</strong> checks payable to "Silver Lining of Hope, Inc" — <a href="/about/contact">contact us</a> for the current mailing address.</li>
+      <li><strong>Employer matching:</strong> many employers match nonprofit gifts; our EIN is 39-2169099.</li>
+      <li><strong>Time:</strong> if money is tight, <a href="/get-involved/volunteer">volunteer hours</a> are just as real a gift.</li>
+    </ul>
+  </div>
+
+  <style>
+    .donate-embed {
+      margin-block: var(--space-6);
+    }
+
+    .donate-placeholder {
+      border: 2px dashed var(--color-gold);
+      border-radius: var(--radius-md);
+      padding: var(--space-6);
+      background: var(--color-paper-raised);
+      text-align: center;
+      max-width: none;
+    }
+  </style>
+</PageLayout>

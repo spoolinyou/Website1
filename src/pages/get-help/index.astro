@@ -1,0 +1,66 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+---
+
+<PageLayout
+  title="Get Help — Free Case Support | Silver Lining of Hope"
+  description="Free help for families of missing persons and homicide victims, support for law enforcement, anonymous tips, and crisis resources. Start here."
+  heading="Get help"
+  intro="Everything on this page is free. You don't need to know the right words, and you don't need to have it together. Just start."
+  crumbs={[{ label: 'Get help', href: '/get-help' }]}
+>
+  <div class="container section">
+    <p class="crisis-note">
+      <strong>If someone is in immediate danger, call 911 now.</strong>
+      Domestic violence support: call or text the National DV Hotline at
+      <a href="tel:18007997233">1-800-799-7233</a>. Crisis support:
+      call or text <a href="tel:988">988</a>.
+    </p>
+
+    <div class="grid-2">
+      <article class="card">
+        <h2>For families &amp; friends</h2>
+        <p>
+          Step-by-step guidance when a loved one is missing or their death is
+          unsolved — and how we take the research burden off you.
+        </p>
+        <a class="card-link" href="/get-help/families">Start here</a>
+      </article>
+      <article class="card">
+        <h2>For law enforcement</h2>
+        <p>
+          Free investigative research support for detectives, agencies, and
+          prosecutors — organized files, records, and cross-referenced data.
+        </p>
+        <a class="card-link" href="/get-help/law-enforcement">How we support agencies</a>
+      </article>
+      <article class="card">
+        <h2>Submit an anonymous tip</h2>
+        <p>
+          Know something about a case? Share it safely. The form collects
+          nothing that identifies you unless you choose to include it.
+        </p>
+        <a class="card-link" href="/get-help/submit-a-tip">Submit a tip</a>
+      </article>
+      <article class="card">
+        <h2>Resources &amp; hotlines</h2>
+        <p>
+          National databases, hotlines, and domestic violence resources —
+          plus a note on browsing safely if someone monitors your device.
+        </p>
+        <a class="card-link" href="/get-help/resources">Open resources</a>
+      </article>
+    </div>
+  </div>
+
+  <style>
+    .crisis-note {
+      background: var(--color-gold-soft);
+      border: 1px solid var(--color-gold);
+      border-radius: var(--radius-md);
+      padding: var(--space-4) var(--space-5);
+      margin-bottom: var(--space-6);
+      max-width: none;
+    }
+  </style>
+</PageLayout>

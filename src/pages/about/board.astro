@@ -1,0 +1,76 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+
+const board = [
+  {
+    name: 'Megan Tomlinson',
+    role: 'Founder & President',
+    bio: 'Founded Silver Lining of Hope in honor of her mother, Leslie "Hope" Houston. Megan\'s seven months of independent investigative research helped get her mother\'s case reopened and charges filed.',
+  },
+  {
+    name: 'Board member',
+    role: 'Vice President',
+    bio: 'Bio coming soon — replace with the board member\'s name, background, and connection to the mission.',
+  },
+  {
+    name: 'Board member',
+    role: 'Treasurer',
+    bio: 'Bio coming soon — replace with the board member\'s name, background, and connection to the mission.',
+  },
+  {
+    name: 'Board member',
+    role: 'Secretary',
+    bio: 'Bio coming soon — replace with the board member\'s name, background, and connection to the mission.',
+  },
+];
+---
+
+<PageLayout
+  title="Board of Directors | Silver Lining of Hope"
+  description="Meet the board of directors of Silver Lining of Hope, Inc, the Indiana nonprofit providing free advocacy for families of the missing and murdered."
+  heading="Board of directors"
+  intro="Governance, transparency, and accountability for the families who trust us."
+  crumbs={[
+    { label: 'About', href: '/about' },
+    { label: 'Board of directors', href: '/about/board' },
+  ]}
+>
+  <div class="container section">
+    <div class="grid-2">
+      {
+        board.map((m) => (
+          <article class="card">
+            <h2 class="board-name">{m.name}</h2>
+            <p class="board-role">{m.role}</p>
+            <p>{m.bio}</p>
+          </article>
+        ))
+      }
+    </div>
+    <p class="board-note">
+      Silver Lining of Hope, Inc is governed by a volunteer board of directors.
+      Questions about governance or financials? <a href="/about/contact">Contact us</a> —
+      as a 501(c)(3) (EIN 39-2169099), our filings are public record.
+    </p>
+  </div>
+
+  <style>
+    .board-name {
+      font-size: var(--text-lg);
+      margin-bottom: var(--space-1);
+    }
+
+    .board-role {
+      font-weight: 650;
+      color: var(--color-gold-deep);
+      font-size: var(--text-sm);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .board-note {
+      margin-top: var(--space-6);
+      color: var(--color-text-soft);
+    }
+  </style>
+</PageLayout>

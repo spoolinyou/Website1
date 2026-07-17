@@ -1,0 +1,124 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id.replace(/\.md$/, '') },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const slug = post.id.replace(/\.md$/, '');
+const url = `https://www.silverliningofhope.com/blog/${slug}`;
+const dateStr = post.data.date.toISOString().slice(0, 10);
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: dateStr,
+  author: { '@type': 'Person', name: post.data.author },
+  publisher: { '@id': 'https://www.silverliningofhope.com/#org' },
+  mainEntityOfPage: url,
+};
+
+/* Related posts: same category first, then most recent */
+const all = (await getCollection('blog'))
+  .filter((p) => p.id !== post.id)
+  .sort((a, b) => {
+    const catA = a.data.category === post.data.category ? 0 : 1;
+    const catB = b.data.category === post.data.category ? 0 : 1;
+    return catA - catB || b.data.date.valueOf() - a.data.date.valueOf();
+  })
+  .slice(0, 2);
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<BaseLayout
+  title={`${post.data.title} | Silver Lining of Hope`}
+  description={post.data.description}
+  jsonLd={[articleSchema]}
+>
+  <div class="container">
+    <Breadcrumbs
+      items={[
+        { label: 'Blog', href: '/blog' },
+        { label: post.data.title, href: `/blog/${slug}` },
+      ]}
+    />
+  </div>
+
+  <article class="container--narrow section">
+    <header class="post-header">
+      <p class="post-tag">{post.data.category}</p>
+      <h1>{post.data.title}</h1>
+      <hr class="lining lining--left" aria-hidden="true" />
+      <p class="post-byline">
+        By {post.data.author} ·
+        <time datetime={dateStr}>{fmt(post.data.date)}</time>
+      </p>
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+
+  {
+    all.length > 0 && (
+      <aside class="container--narrow related" aria-labelledby="related-h">
+        <h2 id="related-h">Related posts</h2>
+        <ul>
+          {all.map((p) => (
+            <li>
+              <a href={`/blog/${p.id.replace(/\.md$/, '')}`}>{p.data.title}</a>
+              <span class="related-meta"> — {p.data.category}, {fmt(p.data.date)}</span>
+            </li>
+          ))}
+        </ul>
+      </aside>
+    )
+  }
+</BaseLayout>
+
+<style>
+  .post-header {
+    margin-bottom: var(--space-6);
+  }
+
+  .post-tag {
+    font-weight: 650;
+    color: var(--color-gold-deep);
+    font-size: var(--text-sm);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-2);
+  }
+
+  .post-byline {
+    color: var(--color-text-soft);
+    font-size: var(--text-sm);
+  }
+
+  .related {
+    padding-bottom: var(--space-8);
+  }
+
+  .related h2 {
+    font-size: var(--text-lg);
+  }
+
+  .related-meta {
+    color: var(--color-text-soft);
+    font-size: var(--text-sm);
+  }
+</style>
