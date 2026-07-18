@@ -1,0 +1,130 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+
+/* FAQPage schema mirrors the visible FAQ content below — keep in sync. */
+const faqs = [
+  {
+    q: 'What should I do when a loved one goes missing?',
+    a: 'Call 911 or your local police right away — there is no waiting period to report a missing person in Indiana. Give them a recent photo and a description. Ask for the report number and the officer\'s name. Then contact us: we help you verify the case is entered into national databases like NCIC and NamUs, and we start organized research at no cost.',
+  },
+  {
+    q: 'My family member\'s death was ruled suspicious or accidental. Can you help?',
+    a: 'Yes. Reviewing deaths that families have real reason to question — sometimes called hidden homicides — is one of our four core programs. We help you request records, build a documented timeline, and, when the facts support it, advocate for the case to be reexamined.',
+  },
+  {
+    q: 'How much does your help cost?',
+    a: 'Nothing. Every service Silver Lining of Hope provides is free to families and to law enforcement. We are a 501(c)(3) nonprofit funded by donations.',
+  },
+  {
+    q: 'Will working with you upset the police handling the case?',
+    a: 'Our approach is to support investigations, not fight them. We organize information into a form detectives can actually use, follow proper channels, and never interfere with active casework. Many of the materials we prepare are designed specifically to be handed to law enforcement.',
+  },
+  {
+    q: 'The case is decades old. Is it too late?',
+    a: 'No. Missing person cases never expire, and cold homicide cases can be reopened when new information or a newly organized record warrants it. Some of our most important work is on cases that are many years old.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<PageLayout
+  title="What to Do When a Loved One Goes Missing | Silver Lining of Hope"
+  description="A calm, step-by-step guide for families of missing persons and unsolved deaths in Indiana — and how to get free research and advocacy help."
+  heading="For families & friends"
+  intro="You should not have to become an investigator to get answers about someone you love. That's what we're for."
+  crumbs={[
+    { label: 'Get help', href: '/get-help' },
+    { label: 'For families & friends', href: '/get-help/families' },
+  ]}
+  jsonLd={[faqSchema]}
+>
+  <div class="container--narrow section prose">
+    <p>
+      <strong>If someone may be in immediate danger, call 911 first.</strong>
+      Everything below can wait until that call is made.
+    </p>
+
+    <h2>If your loved one is missing: first steps</h2>
+    <ol>
+      <li><strong>Report it now.</strong> There is no waiting period. Call 911 or your local police and say you want to file a missing person report.</li>
+      <li><strong>Write down the report number</strong> and the name of the officer who took it.</li>
+      <li><strong>Gather a recent photo</strong> and note what they were last wearing, where they were last seen, and their vehicle if they have one.</li>
+      <li><strong>Ask the agency</strong> to enter the case into NCIC (the national law enforcement database). For a child, also call NCMEC at 1-800-843-5678.</li>
+      <li><strong>Save everything</strong> — texts, voicemails, social media activity. Don't clean their room or car; it may matter later.</li>
+      <li><strong>Then contact us.</strong> We'll help with everything that comes next: NamUs, records, timelines, flyers, and media.</li>
+    </ol>
+
+    <h2>If a death is unsolved — or the ruling feels wrong</h2>
+    <p>
+      Maybe the case is officially cold. Maybe you were told it was an
+      accident, an overdose, or a suicide, and the details have never added
+      up. You are not imagining the gap between what you were told and what
+      you know. Our <a href="/programs/homicides">homicide and cold case
+      review program</a> helps you request the records, document the
+      discrepancies, and build the kind of organized, factual case file that
+      gets a second look.
+    </p>
+
+    <h2>What working with us looks like</h2>
+    <ul>
+      <li>You tell us about the case — once. We listen without judgment and at your pace.</li>
+      <li>We agree together on what we'll do: records requests, timeline work, database entries, advocacy.</li>
+      <li>You get one consistent point of contact and regular updates. No ghosting, no runaround.</li>
+      <li>Nothing about your case is ever published without your consent.</li>
+      <li>It costs nothing, at any point, ever.</li>
+    </ul>
+
+    <h2>Common questions</h2>
+    {
+      faqs.map((f) => (
+        <details class="faq">
+          <summary>{f.q}</summary>
+          <p>{f.a}</p>
+        </details>
+      ))
+    }
+
+    <p class="cta-row">
+      <a class="btn btn--primary" href="/about/contact">Contact us about a case</a>
+      <a class="btn btn--secondary" href="/get-help/resources">Crisis resources</a>
+    </p>
+  </div>
+
+  <style>
+    .faq {
+      border: 1px solid var(--color-line);
+      border-radius: var(--radius-sm);
+      background: var(--color-paper-raised);
+      padding: var(--space-3) var(--space-4);
+      margin-bottom: var(--space-3);
+    }
+
+    .faq summary {
+      font-weight: 650;
+      cursor: pointer;
+      min-height: var(--tap);
+      display: flex;
+      align-items: center;
+    }
+
+    .faq p {
+      padding-top: var(--space-3);
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-6);
+    }
+  </style>
+</PageLayout>

@@ -1,0 +1,73 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+
+const mentions = [
+  {
+    outlet: 'Local news outlet',
+    headline: 'Replace with real coverage: daughter\'s research helps reopen mother\'s case',
+    date: '2025',
+    href: '#',
+  },
+  {
+    outlet: 'Local news outlet',
+    headline: 'Replace with real coverage: new Indiana nonprofit maps the state\'s missing',
+    date: '2026',
+    href: '#',
+  },
+];
+---
+
+<PageLayout
+  title="In the News | Silver Lining of Hope"
+  description="Press coverage of Silver Lining of Hope, our advocacy for families of the missing and murdered, and The Missing Link project."
+  heading="In the news"
+  intro="Coverage of our cases, our advocacy, and The Missing Link project."
+  crumbs={[
+    { label: 'About', href: '/about' },
+    { label: 'In the news', href: '/about/news' },
+  ]}
+>
+  <div class="container--narrow section">
+    <ul class="press-list">
+      {
+        mentions.map((m) => (
+          <li class="card">
+            <p class="press-outlet">{m.outlet} · {m.date}</p>
+            <h2 class="press-headline">
+              <a href={m.href}>{m.headline}</a>
+            </h2>
+          </li>
+        ))
+      }
+    </ul>
+    <p>
+      <strong>Press inquiries:</strong> we make our founder and board available
+      for interviews about missing person advocacy, cold case review, and
+      victims' rights legislation in Indiana.
+      <a href="/about/contact">Contact us</a> or
+      <a href="/get-involved/request-a-speaker">request a speaker</a>.
+    </p>
+  </div>
+
+  <style>
+    .press-list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+    }
+
+    .press-outlet {
+      font-size: var(--text-sm);
+      font-weight: 650;
+      color: var(--color-gold-deep);
+      margin-bottom: var(--space-1);
+    }
+
+    .press-headline {
+      font-size: var(--text-lg);
+      margin: 0;
+    }
+  </style>
+</PageLayout>

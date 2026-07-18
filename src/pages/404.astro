@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page Not Found | Silver Lining of Hope"
+  description="This page could not be found. Find your way to help, programs, or the homepage."
+>
+  <div class="container section notfound">
+    <h1>We couldn't find that page.</h1>
+    <hr class="lining lining--left" aria-hidden="true" />
+    <p>
+      The page may have moved during our site redesign. Here's where you
+      probably want to go:
+    </p>
+    <ul>
+      <li><a href="/get-help">Get help with a case</a></li>
+      <li><a href="/programs">Our programs</a></li>
+      <li><a href="/donate">Donate</a></li>
+      <li><a href="/">Homepage</a></li>
+    </ul>
+  </div>
+
+  <style>
+    .notfound {
+      min-height: 50vh;
+    }
+  </style>
+</BaseLayout>

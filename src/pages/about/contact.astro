@@ -1,0 +1,68 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+---
+
+<PageLayout
+  title="Contact Us | Silver Lining of Hope"
+  description="Contact Silver Lining of Hope about a missing person or homicide case, a law enforcement partnership, an event, or a media inquiry."
+  heading="Contact us"
+  intro="Whether it's about a case, a partnership, or a question — we read everything."
+  crumbs={[
+    { label: 'About', href: '/about' },
+    { label: 'Contact', href: '/about/contact' },
+  ]}
+>
+  <div class="container--narrow section">
+    <p>
+      <strong>If someone is in immediate danger, call 911.</strong> If you need
+      to report information about a case anonymously, use our
+      <a href="/get-help/submit-a-tip">anonymous tip form</a> instead — it asks
+      for nothing that identifies you.
+    </p>
+
+    <form method="post" action="/api/contact" class="contact-form">
+      <label for="name">
+        Name
+        <span class="field-hint">First name is fine.</span>
+      </label>
+      <input type="text" id="name" name="name" autocomplete="name" required />
+
+      <label for="email">
+        Email
+        <span class="field-hint">So we can reply. We never share it.</span>
+      </label>
+      <input type="email" id="email" name="email" autocomplete="email" required />
+
+      <label for="topic">What is this about?</label>
+      <select id="topic" name="topic">
+        <option value="case">A missing person or homicide case</option>
+        <option value="law-enforcement">Law enforcement partnership</option>
+        <option value="volunteer">Volunteering</option>
+        <option value="media">Media inquiry</option>
+        <option value="other">Something else</option>
+      </select>
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" required></textarea>
+
+      <p class="privacy-note">
+        Only these three fields are required. We will never publish, sell, or
+        share what you send us. Case information is handled confidentially.
+      </p>
+
+      <button type="submit" class="btn btn--primary">Send message</button>
+    </form>
+  </div>
+
+  <style>
+    .contact-form {
+      margin-top: var(--space-5);
+      max-width: 34rem;
+    }
+
+    .privacy-note {
+      font-size: var(--text-sm);
+      color: var(--color-text-soft);
+    }
+  </style>
+</PageLayout>

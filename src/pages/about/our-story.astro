@@ -1,0 +1,96 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+---
+
+<PageLayout
+  title="Our Story — Leslie 'Hope' Houston | Silver Lining of Hope"
+  description="Silver Lining of Hope was founded by Megan Tomlinson in honor of her mother, Leslie 'Hope' Houston. This is the story behind our mission."
+  heading="Our story"
+  intro="Every organization has a mission statement. Ours has a name: Hope."
+  crumbs={[
+    { label: 'About', href: '/about' },
+    { label: 'Our story', href: '/about/our-story' },
+  ]}
+>
+  <div class="container--narrow section prose">
+    <figure class="memorial-frame story-photo">
+      <img
+        src="/images/leslie-hope-houston.jpg"
+        alt="Leslie 'Hope' Houston smiling outdoors"
+        width="480"
+        height="600"
+        loading="lazy"
+      />
+      <figcaption>Leslie "Hope" Houston</figcaption>
+    </figure>
+
+    <p>
+      In October 2024, Leslie "Hope" Houston — a mother, a friend, a woman
+      whose middle name would come to carry a movement — was killed. In the
+      weeks that followed, her family faced what too many families face: a
+      case that wasn't moving, questions that weren't being answered, and a
+      system that seemed to expect them to simply wait.
+    </p>
+    <p>
+      Her daughter, Megan Tomlinson, refused to wait. For seven months she did
+      the work herself — requesting records, building timelines, organizing
+      evidence, and pressing for the case to get the attention it deserved.
+      That independent research helped get her mother's case reopened, and
+      charges were filed.
+    </p>
+    <p>
+      Somewhere in those seven months, a hard truth became impossible to
+      ignore: most families don't know how to do what Megan did. They don't
+      know what records they're entitled to, how to preserve what they find,
+      or how to be heard without being dismissed. And the investigators
+      working these cases are often stretched across far more cases than any
+      person could give full attention to.
+    </p>
+    <p>
+      Silver Lining of Hope, Inc was founded to close that gap — to give
+      every family the investigative research, organization, and steady
+      advocacy that Leslie's family had to build from nothing, and to give
+      law enforcement a prepared, professional partner instead of a cold
+      file.
+    </p>
+
+    <h2>What "Silver Lining" means to us</h2>
+    <p>
+      Nothing good erases a loss like this. But out of the darkest thing that
+      ever happened to our founder's family came a thin line of light — proof
+      that persistence works, that cases can move, and that one prepared
+      person can change an outcome. We exist to be that line of light for
+      other families. That is the silver lining, and it is drawn in Hope's
+      name.
+    </p>
+
+    <h2>Where we're going</h2>
+    <p>
+      Our work is organized into the four pillars of HOPE — Homicides,
+      Outreach &amp; advocacy, Persons missing, and Education &amp; reform —
+      and anchored by The Missing Link, our project to build a complete,
+      public, searchable directory of Indiana's missing, expanding across the
+      Midwest.
+    </p>
+    <p>
+      <a href="/programs">Explore our programs</a> ·
+      <a href="/get-help">Get help with a case</a> ·
+      <a href="/donate">Support the mission</a>
+    </p>
+  </div>
+
+  <style>
+    .story-photo {
+      float: right;
+      max-width: 15rem;
+      margin: 0 0 var(--space-4) var(--space-5);
+    }
+
+    @media (max-width: 40em) {
+      .story-photo {
+        float: none;
+        margin: 0 auto var(--space-5);
+      }
+    }
+  </style>
+</PageLayout>

@@ -1,0 +1,47 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+---
+
+<PageLayout
+  title="Get Involved — Volunteer & Advocate | Silver Lining of Hope"
+  description="Volunteer research hours, attend events, request a speaker, or join our legislative advocacy for victims' rights in Indiana."
+  heading="Get involved"
+  intro="This work runs on people who decided a stranger's case mattered. Here's where you fit."
+  crumbs={[{ label: 'Get involved', href: '/get-involved' }]}
+>
+  <div class="container section">
+    <div class="grid-2">
+      <article class="card">
+        <h2>Volunteer</h2>
+        <p>Research, data entry for The Missing Link, event support, writing, and trained family outreach roles.</p>
+        <a class="card-link" href="/get-involved/volunteer">Ways to volunteer</a>
+      </article>
+      <article class="card">
+        <h2>Events</h2>
+        <p>Awareness walks, vigils, fundraisers, and community trainings across Indiana.</p>
+        <a class="card-link" href="/get-involved/events">Upcoming events</a>
+      </article>
+      <article class="card">
+        <h2>Request a speaker</h2>
+        <p>Our founder and advocates speak to agencies, classrooms, and community groups.</p>
+        <a class="card-link" href="/get-involved/request-a-speaker">Book a talk</a>
+      </article>
+      <article class="card">
+        <h2>Legislative advocacy</h2>
+        <p>Dom &amp; Davion's Law, Hailey's Law, and active petitions — how to add your voice.</p>
+        <a class="card-link" href="/get-involved/legislative-advocacy">Take action</a>
+      </article>
+    </div>
+    <p class="donate-line">
+      The fastest way to help is still the simplest:
+      <a href="/donate">make a donation</a> — it funds records fees, advocacy
+      travel, and The Missing Link directly.
+    </p>
+  </div>
+
+  <style>
+    .donate-line {
+      margin-top: var(--space-6);
+    }
+  </style>
+</PageLayout>

@@ -1,0 +1,88 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+
+/*
+ * Replace with real events. Each event should also carry Event JSON-LD —
+ * template below in `eventSchema` shows the shape to reuse per event.
+ */
+const events = [
+  {
+    name: 'Community awareness event (placeholder)',
+    date: '2026-09-12',
+    location: 'Indiana — venue TBA',
+    description:
+      'Replace with a real event: awareness walks, vigils, trainings, and fundraisers appear here.',
+  },
+];
+
+const eventSchema = events.map((e) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: e.name,
+  startDate: e.date,
+  eventStatus: 'https://schema.org/EventScheduled',
+  location: { '@type': 'Place', name: e.location },
+  organizer: {
+    '@type': 'NonprofitOrganization',
+    name: 'Silver Lining of Hope, Inc',
+    url: 'https://www.silverliningofhope.com',
+  },
+  description: e.description,
+}));
+
+const fmt = (d: string) =>
+  new Date(d + 'T12:00:00').toLocaleDateString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+---
+
+<PageLayout
+  title="Events | Silver Lining of Hope"
+  description="Upcoming Silver Lining of Hope events in Indiana: awareness walks, vigils, community trainings, and fundraisers for families of the missing."
+  heading="Events"
+  intro="Awareness walks, vigils, trainings, and fundraisers — every one of them moves a case or a cause forward."
+  crumbs={[
+    { label: 'Get involved', href: '/get-involved' },
+    { label: 'Events', href: '/get-involved/events' },
+  ]}
+  jsonLd={eventSchema}
+>
+  <div class="container--narrow section">
+    {
+      events.map((e) => (
+        <article class="card event-card">
+          <h2>{e.name}</h2>
+          <p class="event-meta">
+            <time datetime={e.date}>{fmt(e.date)}</time> · {e.location}
+          </p>
+          <p>{e.description}</p>
+        </article>
+      ))
+    }
+    <p>
+      Want to bring an event to your community, or volunteer at one?
+      <a href="/about/contact">Contact us</a> or see
+      <a href="/get-involved/volunteer">volunteer roles</a>.
+    </p>
+  </div>
+
+  <style>
+    .event-card {
+      margin-bottom: var(--space-5);
+    }
+
+    .event-card h2 {
+      font-size: var(--text-lg);
+      margin-bottom: var(--space-1);
+    }
+
+    .event-meta {
+      font-weight: 650;
+      color: var(--color-gold-deep);
+      font-size: var(--text-sm);
+    }
+  </style>
+</PageLayout>

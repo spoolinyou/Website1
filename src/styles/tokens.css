@@ -1,0 +1,82 @@
+/* ==========================================================================
+   Silver Lining of Hope — Design Tokens
+   Concept: "light through darkness" — a dark, steady base with one
+   controlled warm light accent. Calm, dignified, never sensational.
+   ========================================================================== */
+
+:root {
+  /* ---- Color: base ---- */
+  --color-ink: #1b2432;        /* deep ink navy — primary dark surface */
+  --color-ink-deep: #141a24;   /* near-black navy — footer, hero */
+  --color-ink-soft: #2a3546;   /* raised dark surface, dark-card border */
+
+  /* ---- Color: neutrals ---- */
+  --color-silver: #c9ced6;     /* soft silver-gray — secondary text on dark */
+  --color-silver-dim: #98a1ad; /* muted silver — captions on dark */
+  --color-paper: #f7f5f1;      /* warm off-white — light page background */
+  --color-paper-raised: #ffffff;
+  --color-line: #e2ded6;       /* hairline borders on light surfaces */
+
+  /* ---- Color: text on light ---- */
+  --color-text: #232b38;       /* body text on paper (13.3:1 on paper) */
+  --color-text-soft: #5a6270;  /* secondary text on paper (5.6:1) */
+
+  /* ---- Color: accent (used sparingly) ---- */
+  --color-gold: #c9a15a;       /* dawn gold — the silver-lining motif */
+  --color-gold-deep: #8a6a2f;  /* accessible gold for text on light (4.6:1) */
+  --color-gold-soft: #e8d9bc;  /* pale gold tint for subtle backgrounds */
+  --color-teal: #2e5e5e;       /* deep teal — secondary links (6.8:1) */
+
+  /* ---- The signature: silver-lining light gradient ---- */
+  --gradient-lining: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-silver) 18%,
+    #e8e4da 42%,
+    var(--color-gold) 58%,
+    #b08a45 82%,
+    transparent 100%
+  );
+
+  /* ---- Type families ---- */
+  --font-display: 'Fraunces Variable', 'Fraunces', Georgia, serif;
+  --font-body: 'Public Sans Variable', 'Public Sans', -apple-system,
+    'Segoe UI', sans-serif;
+
+  /* ---- Type scale: 12 / 14 / 16 / 18 / 24 / 32 / 48 / 64 ---- */
+  --text-xs: 0.75rem;    /* 12 — legal, badges */
+  --text-sm: 0.875rem;   /* 14 — captions, meta */
+  --text-base: 1rem;     /* 16 — UI, small body */
+  --text-md: 1.125rem;   /* 18 — body copy */
+  --text-lg: 1.5rem;     /* 24 — H3, leads */
+  --text-xl: 2rem;       /* 32 — H2 */
+  --text-2xl: 3rem;      /* 48 — H1 */
+  --text-3xl: 4rem;      /* 64 — hero display, large screens only */
+
+  --leading-tight: 1.15;
+  --leading-snug: 1.35;
+  --leading-body: 1.65;
+
+  /* ---- Spacing scale (4px base) ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  /* ---- Radii, shadow, misc ---- */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --shadow-card: 0 1px 2px rgb(20 26 36 / 0.06), 0 8px 24px rgb(20 26 36 / 0.07);
+  --shadow-card-hover: 0 2px 4px rgb(20 26 36 / 0.08), 0 12px 32px rgb(20 26 36 / 0.12);
+  --container: 72rem;
+  --container-narrow: 46rem;
+
+  /* ---- Touch target minimum ---- */
+  --tap: 44px;
+}

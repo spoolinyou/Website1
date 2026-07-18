@@ -1,0 +1,43 @@
+---
+/*
+ * Standard inner-page layout: breadcrumbs, one H1, the silver-lining rule
+ * beneath it, then page content. Enforces the single-H1 rule by owning it.
+ */
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+interface Crumb {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  heading: string;
+  intro?: string;
+  crumbs: Crumb[];
+  jsonLd?: object[];
+}
+
+const { title, description, heading, intro, crumbs, jsonLd } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} jsonLd={jsonLd}>
+  <div class="container">
+    <Breadcrumbs items={crumbs} />
+    <header class="page-header">
+      <h1>{heading}</h1>
+      <hr class="lining lining--left" aria-hidden="true" />
+      {intro && <p class="lead">{intro}</p>}
+    </header>
+  </div>
+  <slot />
+</BaseLayout>
+
+<style>
+  .page-header {
+    padding-block: var(--space-6) var(--space-4);
+    max-width: var(--container-narrow);
+  }
+</style>

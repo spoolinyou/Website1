@@ -1,0 +1,375 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Missing Persons & Homicide Victim Advocacy | Silver Lining of Hope';
+const description =
+  'Free investigative research and advocacy for families of missing persons, unsolved homicides, and the unidentified — serving Indiana and beyond.';
+
+const pillars = [
+  {
+    letter: 'H',
+    name: 'Homicides',
+    text: 'Case review and investigative research for unsolved and hidden homicides.',
+    href: '/programs/homicides',
+  },
+  {
+    letter: 'O',
+    name: 'Outreach & advocacy',
+    text: 'Standing beside families and survivors — in meetings, in courtrooms, in the media.',
+    href: '/programs/outreach-advocacy',
+  },
+  {
+    letter: 'P',
+    name: 'Persons missing',
+    text: 'Research, records requests, and awareness for missing person cases.',
+    href: '/programs/missing-persons',
+  },
+  {
+    letter: 'E',
+    name: 'Education & reform',
+    text: 'Training, public education, and legislative change that protects victims.',
+    href: '/programs/education-reform',
+  },
+];
+
+const posts = [
+  {
+    title: 'The Missing Link: mapping every missing person case in Indiana',
+    date: '2026-06-12',
+    href: '/blog/the-missing-link-mapping-indiana-missing-persons',
+    tag: 'The Missing Link',
+  },
+  {
+    title: 'What families should know about requesting records under APRA',
+    date: '2026-05-28',
+    href: '/blog/requesting-records-apra-guide-for-families',
+    tag: 'Education',
+  },
+  {
+    title: 'Why we exist: Leslie’s story, one year later',
+    date: '2026-05-02',
+    href: '/blog/why-we-exist-leslies-story',
+    tag: 'Our story',
+  },
+];
+
+const fmt = (d: string) =>
+  new Date(d + 'T12:00:00').toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- 1 · Hero -->
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="container">
+      <p class="eyebrow">A 501(c)(3) nonprofit · free of charge, always</p>
+      <h1 id="hero-h">
+        Investigative advocacy for the missing, the murdered, and the
+        unidentified.
+      </h1>
+      <p class="hero-sub">
+        Silver Lining of Hope provides free investigative research and advocacy
+        for families — and works as a partner resource for law enforcement,
+        detectives, and prosecutors.
+      </p>
+      <div class="hero-ctas">
+        <a class="btn btn--primary" href="/get-help">Get help</a>
+        <a class="btn btn--secondary-light" href="/donate">Donate</a>
+      </div>
+      <hr class="lining" aria-hidden="true" />
+    </div>
+  </section>
+
+  <!-- 2 · Audience router -->
+  <section class="section" aria-labelledby="router-h">
+    <div class="container">
+      <h2 id="router-h" class="visually-hidden">How can we help you?</h2>
+      <div class="grid-3">
+        <article class="card fade-in">
+          <h3>Families &amp; loved ones</h3>
+          <p>
+            If someone you love is missing, or their death is unsolved or
+            suspicious, we will help you — at no cost, ever.
+          </p>
+          <a class="card-link" href="/get-help/families">Start here</a>
+        </article>
+        <article class="card fade-in">
+          <h3>Law enforcement</h3>
+          <p>
+            We compile records, clean data, and cross-reference sources so
+            your detectives and prosecutors don't have to start from zero.
+          </p>
+          <a class="card-link" href="/get-help/law-enforcement">Partner with us</a>
+        </article>
+        <article class="card fade-in">
+          <h3>Get involved</h3>
+          <p>
+            Volunteer research hours, attend an event, or support the work
+            that brings families answers.
+          </p>
+          <a class="card-link" href="/get-involved">Ways to help</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · Pillars of HOPE -->
+  <section class="section section--pillars" aria-labelledby="pillars-h">
+    <div class="container">
+      <p class="eyebrow">What we do</p>
+      <h2 id="pillars-h">The four pillars of HOPE</h2>
+      <p class="lead">
+        Every program we run belongs to one of four pillars — together they
+        spell the reason we do this work.
+      </p>
+      <div class="grid-4">
+        {
+          pillars.map((p) => (
+            <article class="card fade-in">
+              <span class="pillar-letter" aria-hidden="true">{p.letter}</span>
+              <h3>{p.name}</h3>
+              <p>{p.text}</p>
+              <a class="card-link" href={p.href}>Learn more<span class="visually-hidden"> about {p.name}</span></a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · Founder story: Why Hope -->
+  <section class="section section--dark" aria-labelledby="why-h">
+    <div class="container why-grid">
+      <figure class="memorial-frame why-photo">
+        <img
+          src="/images/leslie-hope-houston.jpg"
+          alt="Leslie 'Hope' Houston smiling outdoors"
+          width="480"
+          height="600"
+          loading="lazy"
+        />
+        <figcaption>Leslie "Hope" Houston</figcaption>
+      </figure>
+      <div>
+        <p class="eyebrow">Why "Hope"</p>
+        <h2 id="why-h">This work began with one family's fight for the truth.</h2>
+        <p>
+          In October 2024, our founder Megan Tomlinson lost her mother, Leslie
+          "Hope" Houston. When the case stalled, Megan spent seven months doing
+          the investigative research herself — work that helped get the case
+          reopened and charges filed.
+        </p>
+        <p>
+          Silver Lining of Hope exists so that no family has to do that alone.
+        </p>
+        <a class="btn btn--secondary-light" href="/about/our-story">Read our story</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · The Missing Link spotlight -->
+  <section class="section section--dark section--link" aria-labelledby="tml-h">
+    <div class="container">
+      <p class="eyebrow">Flagship project</p>
+      <h2 id="tml-h">The Missing Link</h2>
+      <p class="tml-lead">
+        We are compiling, cleaning, and cross-referencing every available
+        record on Indiana's missing — from NamUs, the Doe Network, the Charley
+        Project, and public records requests — into one searchable public
+        directory, mapped by Indiana State Police district.
+      </p>
+      <div class="grid-3 tml-stats">
+        <div class="stat fade-in">
+          <strong>1,000+</strong>
+          <span>Indiana missing person cases being compiled</span>
+        </div>
+        <div class="stat fade-in">
+          <strong>4 states</strong>
+          <span>Expanding to Ohio, Illinois, Michigan &amp; Kentucky</span>
+        </div>
+        <div class="stat fade-in">
+          <strong>1 directory</strong>
+          <span>A free, public, searchable resource — coming soon</span>
+        </div>
+      </div>
+      <a class="btn btn--primary" href="/programs/the-missing-link">Follow the project</a>
+    </div>
+  </section>
+
+  <!-- 6 · Impact / how donations help -->
+  <section class="section" aria-labelledby="impact-h">
+    <div class="container">
+      <p class="eyebrow">Your support at work</p>
+      <h2 id="impact-h">What your donation makes possible</h2>
+      <div class="grid-4">
+        <article class="card fade-in">
+          <h3>Records &amp; research</h3>
+          <p>FOIA/APRA request fees, case file copies, and database access for active case research.</p>
+        </article>
+        <article class="card fade-in">
+          <h3>Family advocacy</h3>
+          <p>Travel to hearings, meetings with investigators, and direct support for families in crisis.</p>
+        </article>
+        <article class="card fade-in">
+          <h3>The Missing Link</h3>
+          <p>Building and hosting the public directory of Indiana's missing — free for everyone.</p>
+        </article>
+        <article class="card fade-in">
+          <h3>Education &amp; reform</h3>
+          <p>Community training, awareness events, and advocacy for stronger victim-protection laws.</p>
+        </article>
+      </div>
+      <p><a class="btn btn--primary" href="/donate">Donate — every dollar goes to the mission</a></p>
+    </div>
+  </section>
+
+  <!-- 7 · Recent posts -->
+  <section class="section section--posts" aria-labelledby="blog-h">
+    <div class="container">
+      <p class="eyebrow">From the blog</p>
+      <h2 id="blog-h">Recent updates</h2>
+      <div class="grid-3">
+        {
+          posts.map((post) => (
+            <article class="card fade-in">
+              <p class="post-meta">
+                <span class="post-tag">{post.tag}</span>
+                <time datetime={post.date}>{fmt(post.date)}</time>
+              </p>
+              <h3 class="post-title">
+                <a href={post.href}>{post.title}</a>
+              </h3>
+            </article>
+          ))
+        }
+      </div>
+      <p><a href="/blog">All posts →</a></p>
+    </div>
+  </section>
+
+  <!-- 8 · Trust bar -->
+  <section class="trust" aria-label="Organization credentials">
+    <div class="container trust-inner">
+      <p><strong>501(c)(3) public charity</strong> — donations are tax-deductible</p>
+      <p>EIN 39-2169099</p>
+      <p><a href="/about/news">As seen in the news</a></p>
+      <p><a href="/about/board">Meet our board</a></p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero: dark base, dawn light rising from the lining */
+  .hero {
+    background:
+      radial-gradient(90rem 28rem at 50% 118%, rgb(201 161 90 / 0.16), transparent 60%),
+      var(--color-ink-deep);
+    color: var(--color-silver);
+    padding-block: var(--space-8) 0;
+  }
+
+  .hero h1 {
+    color: var(--color-paper);
+    font-size: clamp(var(--text-xl), 5.5vw, var(--text-3xl));
+    max-width: 22ch;
+  }
+
+  .hero-sub {
+    font-size: var(--text-lg);
+    line-height: var(--leading-snug);
+    max-width: 52ch;
+    color: var(--color-silver);
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-block: var(--space-6);
+  }
+
+  .hero .lining {
+    margin-bottom: 0;
+  }
+
+  .section--pillars {
+    background: linear-gradient(to bottom, #efece6, var(--color-paper));
+  }
+
+  .why-grid {
+    display: grid;
+    gap: var(--space-6);
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
+
+  @media (min-width: 48em) {
+    .why-grid {
+      grid-template-columns: minmax(14rem, 20rem) 1fr;
+      gap: var(--space-8);
+    }
+  }
+
+  .why-photo {
+    max-width: 20rem;
+  }
+
+  .section--link {
+    background:
+      radial-gradient(70rem 24rem at 50% -30%, rgb(201 161 90 / 0.12), transparent 60%),
+      var(--color-ink);
+    border-top: 1px solid var(--color-ink-soft);
+  }
+
+  .tml-lead {
+    max-width: 62ch;
+  }
+
+  .tml-stats {
+    margin-block: var(--space-6);
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
+  }
+
+  .post-tag {
+    font-weight: 650;
+    color: var(--color-gold-deep);
+  }
+
+  .post-title a {
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+
+  .post-title a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--color-gold);
+  }
+
+  .trust {
+    background: var(--color-paper-raised);
+    border-top: 1px solid var(--color-line);
+    padding-block: var(--space-5);
+  }
+
+  .trust-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3) var(--space-7);
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
+  }
+
+  .trust-inner p {
+    margin: 0;
+  }
+</style>
